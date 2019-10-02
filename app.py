@@ -1,8 +1,25 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
+from model.dbconnect import dbconn
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
 
+db = {
+	'user': 'root',
+	'password': '',
+	'host': '127.0.0.1',
+	'database': 'theatre'
+}
+
+try:
+	con = dbconn(db)
+	cur = con.cursor()
+	print("Connected")
+except:
+	print("Not Connected")
+
+
+# TODO enter login verification
 
 @app.route('/')
 def home():
@@ -10,7 +27,9 @@ def home():
 
 @app.route('/ticket')
 def ticket():
-	return render_template('ticket.html')
+	cookie = request.cookies.get('bookMovie')
+	return cookie #render_template('ticket.html')
+
 
 
 if __name__ == '__main__':

@@ -107,15 +107,15 @@
 <div class="container-fluid padding">
 <div class="row text-center padding">
 	<div class="col-xs-12 col-sm-12 col-md-4">
-		<a href="#"><img src="{{url_for('static',filename='images/abominable.png')}}"></a>
+		<img id="abominable" class="movie_tile" src="{{url_for('static',filename='images/abominable.png')}}">
 		<h3>Movie name</h3>	
 	</div>
 	<div class="col-xs-12 col-sm-12 col-md-4">
-		<a href="#"><img src="{{url_for('static',filename='images/transporter.jpg')}}"></a>
+		<img id="transporter" class="movie_tile" src="{{url_for('static',filename='images/transporter.jpg')}}">
 		<h3>Movie name</h3>	
 	</div>
 	<div class="col-xs-12 col-sm-12 col-md-4">
-		<a href="#"><img src="{{url_for('static',filename='images/xmen.jpg')}}"></a>
+		<img id="xmen" class="movie_tile" src="{{url_for('static',filename='images/xmen.jpg')}}">
 		<h3>Movie name</h3>	
 	</div>
 </div>
@@ -179,7 +179,18 @@
 -->
 
 
+<script type="text/javascript">
+	$(function(){
+		$('.movie_tile').bind('click',function () {
+			console.log(this.id);
+			setCookie(this.id);
+		});
+	});
 
+	function setCookie(cook) {
+		document.cookie = "bookMovie = "+cook;
+	}
+</script>
 
 </body>
 </html>
