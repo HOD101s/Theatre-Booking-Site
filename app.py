@@ -28,7 +28,7 @@ def home():
 @app.route('/ticket')
 def ticket():
 	cookie = request.cookies.get('bookMovie')
-	return cookie #render_template('ticket.html')
+	return render_template('ticket.html')
 
 
 
