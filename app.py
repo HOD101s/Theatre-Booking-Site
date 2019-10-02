@@ -21,6 +21,11 @@ except:
 	print("Not Connected")
 
 
+# Session Variables
+showID = ""
+activeUser = ""
+
+
 # TODO enter login verification
 
 @app.route('/')
@@ -31,7 +36,7 @@ def home():
 def time():
 	return render_template('time.html')
 
-@app.route('/get_time',methods=['POST'])
+@app.route('/get_time', methods=['POST'])
 def timing():
 	print(request.cookies['bookMovie'])
 	cur.execute(Query.getTimings.format(request.cookies['bookMovie']))
@@ -39,12 +44,27 @@ def timing():
 	print(t)
 	return jsonify(t)
 
+@app.route('/confirm')
+def confirm():
+	print(request.cookies['bookMovie'], request.cookies['timings'],request.cookies['seats'], sep='\n')
 
+	return render_template('confirm.html')
 
 @app.route('/ticket')
 def ticket():
-	return render_template('ticket.html')
-
+	print(request.cookies['bookMovie'], request.cookies['timings'],sep='\n')
+	cur.execute(Query.getShowData.format(request.cookies['bookMovie'], request.cookies['timings']))
+	res = cur.fetchall()
+	print(res)
+	showid = res[0][0]
+	SCREEN = res[0][1]
+	TIME = res[0][2]
+	PRICE = res[0][3]
+	mid = res[0][4]
+	BOOKED = res[0][5]
+	if BOOKED is None:
+		BOOKED = list()
+	return render_template('ticket.html',movie =request.cookies['bookMovie'], screen=SCREEN,time = TIME, price=PRICE,booked = BOOKED)
 
 
 if __name__ == '__main__':
