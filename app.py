@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request
 from model.dbconnect import dbconn
+from model import Query
+from flask import jsonify
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
@@ -25,10 +27,23 @@ except:
 def home():
 	return render_template('home.html')
 
+@app.route('/time')
+def time():
+	return render_template('time.html')
+
+@app.route('/get_time',methods=['POST'])
+def timing():
+	print(request.cookies['bookMovie'])
+	cur.execute(Query.getTimings.format(request.cookies['bookMovie']))
+	t = [str(x)[2:7] for x in cur.fetchall()]
+	print(t)
+	return jsonify(t)
+
+
+
 @app.route('/ticket')
 def ticket():
-	cookie = request.cookies.get('bookMovie')
-	return cookie #render_template('ticket.html')
+	return render_template('ticket.html')
 
 
 

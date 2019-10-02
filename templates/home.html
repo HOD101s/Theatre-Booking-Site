@@ -9,7 +9,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 	<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-	<link href="/static/css/style.css" rel="stylesheet">
+	<link href="{{url_for('static',filename='css/style.css')}}"rel="stylesheet">
 
 	<!-- C:\Users\manas\Desktop\Practice\College\SEM 5\Project\WDL-DBMS-master\static\css -->
 	
@@ -182,13 +182,14 @@
 <script type="text/javascript">
 	$(function(){
 		$('.movie_tile').bind('click',function () {
-			console.log(this.id);
-			setCookie(this.id);
+			//console.log(this.id);
+			setCookie(this.id,'bookMovie');
+			window.location = "{{url_for('time')}}";
 		});
 	});
 
-	function setCookie(cook) {
-		document.cookie = "bookMovie = "+cook;
+	function setCookie(cook,name) {
+		document.cookie = name+" = "+cook;
 	}
 </script>
 
