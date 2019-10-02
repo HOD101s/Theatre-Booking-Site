@@ -52,7 +52,13 @@
 			<script type="text/javascript">
 				var price = {{price}}; //price
 				var lis = [];
-				var booked = [].push({{booked}});
+				var booked = "{{booked}}";
+				if(booked == ''){
+				    booked=[];
+                }else{
+				    booked = booked.split(' ');
+                }
+				console.log(booked);
 				$(document).ready(function() {
 					var $cart = $('#selected-seats'), //Sitting Area
 					$counter = $('#counter'), //Votes

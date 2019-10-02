@@ -24,6 +24,7 @@ except:
 # Session Variables
 showID = ""
 activeUser = ""
+showTime = ""
 
 
 # TODO enter login verification
@@ -47,7 +48,8 @@ def timing():
 @app.route('/confirm')
 def confirm():
 	print(request.cookies['bookMovie'], request.cookies['timings'],request.cookies['seats'], sep='\n')
-
+	cur.execute(Query.updateTickets.format(','+str(request.cookies['seats']),(request.cookies['bookMovie']), request.cookies['timings']))
+	con.commit()
 	return render_template('confirm.html')
 
 @app.route('/ticket')
@@ -56,14 +58,22 @@ def ticket():
 	cur.execute(Query.getShowData.format(request.cookies['bookMovie'], request.cookies['timings']))
 	res = cur.fetchall()
 	print(res)
-	showid = res[0][0]
+	global showTime
+	global showId
+	showId = res[0][0]
 	SCREEN = res[0][1]
 	TIME = res[0][2]
+	showTime = TIME
 	PRICE = res[0][3]
 	mid = res[0][4]
 	BOOKED = res[0][5]
-	if BOOKED is None:
-		BOOKED = list()
+	if BOOKED == '':
+		return render_template('ticket.html', movie=request.cookies['bookMovie'], screen=SCREEN, time=TIME, price=PRICE,
+							   booked=BOOKED)
+	if BOOKED[0] == ',':
+		BOOKED = BOOKED[1:]
+	BOOKED = str(' '.join(BOOKED.split(',')))
+	print("Hello"+BOOKED+"Hoe")
 	return render_template('ticket.html',movie =request.cookies['bookMovie'], screen=SCREEN,time = TIME, price=PRICE,booked = BOOKED)
 
 
