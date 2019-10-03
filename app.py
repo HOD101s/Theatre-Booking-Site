@@ -31,8 +31,6 @@ activeUser = ""
 showTime = ""
 
 
-# TODO enter login verification
-
 @app.route('/home')
 def home():
 	return render_template('home.html')
@@ -56,6 +54,7 @@ def confirm():
 	con.commit()
 	global showID
 	global activeUser
+	print("Show ID : ",showID)
 	tid = hashlib.md5((activeUser+request.cookies['seats']+request.cookies['bookMovie']+request.cookies['timings']).encode()).hexdigest()
 	tstamp = str(datetime.now())
 	cur.execute(Query.insertTicket.format(tid,tstamp,request.cookies['seats'],showID,activeUser))
@@ -122,7 +121,15 @@ def check_login():
 
 @app.route('/admin')
 def admin():
-	return render_template('admin')
+	cur.execute(Query.allShow)
+	showRes = cur.fetchall()
+	cur.execute(Query.allTicket)
+	ticketsRes = cur.fetchall()
+	cur.execute(Query.allClient)
+	clientsRes = cur.fetchall()
+	cur.execute(Query.allMovie)
+	movieRes = cur.fetchall()
+	return render_template('admin.html',show = showRes, ticket = ticketsRes,clients = clientsRes, movies = movieRes)
 
 def getNewID():
 	return uuid.uuid4()

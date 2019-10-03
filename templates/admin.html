@@ -8,6 +8,96 @@
 	<title>Admin</title>
 </head>
 <body>
-
+<!--  Show	-->
+	<h1>Shows Data</h1>
+	<table border="2">
+    <thead>
+    <tr>
+        <th>ShowID</th>
+        <th>Screen</th>
+        <th>TimeStamp</th>
+        <th>Cost</th>
+        <th>MovieID</th>
+        <th>Tickets</th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for row in show %}
+            <tr>
+                <td>{{row[0]}}</td>
+                <td>{{row[1]}}</td>
+                <td>{{row[2]}}</td>
+                <td>{{row[3]}}</td>
+                <td>{{row[4]}}</td>
+                <td>{{row[5]}}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+	</table>
+	<br><br><br>
+<!--  Tickets	-->
+	<h1>Tickets Data</h1>
+	<table border="2">
+    <thead>
+    <tr>
+        <th>TicketID</th>
+        <th>TimeStamp</th>
+        <th>SeatNumber</th>
+        <th>ShowID</th>
+        <th>UserID</th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for row in ticket %}
+            <tr>
+                <td>{{row[0]}}</td>
+                <td>{{row[1]}}</td>
+                <td>{{row[2]}}</td>
+                <td>{{row[3]}}</td>
+                <td>{{row[4]}}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<br><br><br>
+<!--  Clients	-->
+	<h1>Clients Data</h1>
+	<table border="2">
+    <thead>
+    <tr>
+        <th>UserID</th>
+        <th>Password</th>
+        <th>Credential</th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for row in clients %}
+            <tr>
+                <td>{{row[0]}}</td>
+                <td>{{row[1]}}</td>
+                <td>{{row[2]}}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<br><br><br>
+<!--  Movie	-->
+	<h1>Movies Data</h1>
+	<table border="2">
+    <thead>
+    <tr>
+        <th>MovieID</th>
+        <th>Movie</th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for row in movies %}
+            <tr>
+                <td>{{row[0]}}</td>
+                <td>{{row[1]}}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
 </body>
 </html>

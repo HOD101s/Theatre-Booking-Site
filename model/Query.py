@@ -5,6 +5,12 @@ check_login = "SELECT * FROM `client` WHERE (`uid` = '{}') AND (`password` = '{}
 check_register = "SELECT * FROM `client` WHERE (`uid` = '{}');"
 regUser = "INSERT INTO `client`(`uid`, `password`, `credential`) VALUES ('{}','{}',0);"
 insertTicket = "INSERT INTO `tickets`(`tid`, `tstamp`, `seat_no`, `showid`, `uid`) VALUES ('{}','{}','{}','{}','{}');"
+
+allShow = "SELECT * FROM `show`;";
+allTicket = "SELECT * FROM `tickets`;";
+allClient = "SELECT * FROM `client`;";
+allMovie = "SELECT * FROM `movie`;";
+
 '''
 Create Database `theatre`;
 
