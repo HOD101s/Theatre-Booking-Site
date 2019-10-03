@@ -1,10 +1,10 @@
 getTimings = "SELECT `tstamp` FROM `show` WHERE `mid` = (SELECT `mid` from `movie` WHERE `Movie Name` = '{}');"
 getShowData = "SELECT * FROM `show` WHERE `mid` = (SELECT `mid` from `movie` WHERE `Movie Name` = '{}') AND (`tstamp` = '{}');"
 updateTickets = "UPDATE `show` SET `tickets`= concat(`tickets`,'{}') WHERE `mid` = (SELECT `mid` from `movie` WHERE `Movie Name` = '{}') AND (`tstamp` = '{}')";
-check_login = "SELECT * FROM `client` WHERE (`uid` = '{}') AND (`password` = '{}')";
-check_register = "SELECT * FROM `client` WHERE (`uid` = '{}')";
-regUser = "INSERT INTO `client`(`uid`, `password`, `credential`) VALUES ('{}','{}',0)";
-
+check_login = "SELECT * FROM `client` WHERE (`uid` = '{}') AND (`password` = '{}');"
+check_register = "SELECT * FROM `client` WHERE (`uid` = '{}');"
+regUser = "INSERT INTO `client`(`uid`, `password`, `credential`) VALUES ('{}','{}',0);"
+insertTicket = "INSERT INTO `tickets`(`tid`, `tstamp`, `seat_no`, `showid`, `uid`) VALUES ('{}','{}','{}','{}','{}');"
 '''
 Create Database `theatre`;
 
@@ -31,10 +31,10 @@ CREATE TABLE `Show` (
 );
 
 CREATE TABLE `Tickets` (
-  `tid` VARCHAR(5) PRIMARY KEY,
-  `tstamp` VARCHAR(5),
-  `seat_no` VARCHAR(5),
-  `showid` VARCHAR(5),
+  `tid` VARCHAR(100) PRIMARY KEY,
+  `tstamp` VARCHAR(100),
+  `seat_no` VARCHAR(100),
+  `showid` VARCHAR(100),
   `uid` VARCHAR(20),
   FOREIGN KEY(`ShowID`) REFERENCES `Show` (`ShowID`),
   FOREIGN KEY(`uid`) REFERENCES `Client` (`uid`)

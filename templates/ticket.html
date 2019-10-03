@@ -133,16 +133,15 @@
 				$('button').bind('click', function() {
 					if(confirm("Are you sure you want to book these Tickets?")){
 						console.log(lis);
-						document.cookie = "seats = "+lis;
-						window.location = "{{url_for('confirm')}}";
+						if(lis.length == 0){
+						    alert("No seats Chosen");
+                        }else{
+                            document.cookie = "seats = "+lis;
+                            window.location = "{{url_for('confirm')}}";
+                        }
 					}else{
 						return false;
 					}
-					// $.getJSON('/background_process_test',
-					// 	function(data) {
-					// //do nothing
-					// });
-					// return false;
 				});
 				});
 				
