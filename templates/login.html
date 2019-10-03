@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<title>Login Form</title>
+	<link href="{{url_for('static',filename='css/newstyle.css')}}" rel="stylesheet">
+</head>
+<body>
+	<div class="loginbox">
+		<img src="{{url_for('static',filename='images/loginlogo.jpg')}}" class="avatar">
+		<h1> Login </h1>
+		<form autocomplete="off">
+			<p>Username</p>
+			<input id="user" type="text" name="" placeholder="Enter Username">
+			<p>Password</p>
+			<input id="pass" type="text" name="" placeholder="Enter Password ">
+			<input type="submit" value="Login" onclick="login()">
+			<input id="goToReg" type="submit" value="Sign Up" onclick="openReg()">
+			<p id="status"></p>
+		</form>
+	</div>
+
+	<script  type="text/javascript">
+		 function openReg(){
+            event.preventDefault();
+            window.location = "{{url_for('register')}}";
+        }
+
+        function login() {
+			event.preventDefault();
+			var user = document.getElementById("user").value;
+			var pass = document.getElementById("pass").value;
+			document.cookie = "user = "+user;
+			document.cookie = "pass = "+pass;
+
+			$.ajax({
+			type: "POST",
+			url: '/check_login',
+			// data: JSON.stringify(timings),
+			// contentType: "application/json; charset=utf-8",
+			// traditional: true,
+			success: function (data) {
+				if(data == '1'){
+					window.location = "{{url_for('home')}}";
+				}else{
+					document.getElementById("status").innerHTML = "Incorrect Credentials";
+				}
+			}
+			});
+		}
+    </script>
+</body>
+</html>

@@ -2,6 +2,9 @@ from flask import Flask, render_template, request
 from model.dbconnect import dbconn
 from model import Query
 from flask import jsonify
+import hashlib
+import uuid
+
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
@@ -29,7 +32,7 @@ showTime = ""
 
 # TODO enter login verification
 
-@app.route('/')
+@app.route('/home')
 def home():
 	return render_template('home.html')
 
@@ -73,9 +76,45 @@ def ticket():
 	if BOOKED[0] == ',':
 		BOOKED = BOOKED[1:]
 	BOOKED = str(' '.join(BOOKED.split(',')))
-	print("Hello"+BOOKED+"Hoe")
 	return render_template('ticket.html',movie =request.cookies['bookMovie'], screen=SCREEN,time = TIME, price=PRICE,booked = BOOKED)
 
+
+@app.route('/register')
+def register():
+	return render_template('register.html')
+
+@app.route('/check_register',methods=['POST'])
+def check_register():
+	print(request.cookies['reguser'],request.cookies['regpass'], sep='\n')
+	cur.execute(Query.check_register.format(request.cookies['reguser']))
+	if len(cur.fetchall()) > 0:
+		return '0'
+	else:
+		cur.execute(Query.regUser.format(request.cookies['reguser'],str(hashlib.md5(request.cookies['regpass'].encode()).hexdigest())))
+		print(hashlib.md5(request.cookies['regpass'].encode()).hexdigest())
+		con.commit()
+		return '1'
+
+
+@app.route('/login')
+def login():
+	return render_template('login.html')
+
+@app.route('/check_login',methods=['POST'])
+def check_login():
+	global activeUser
+	print(request.cookies['user'],request.cookies['pass'], sep='\n')
+	cur.execute(Query.check_login.format(request.cookies['user'],str(hashlib.md5(request.cookies['pass'].encode()).hexdigest())))
+	print(hashlib.md5(request.cookies['pass'].encode()).hexdigest())
+	if len(cur.fetchall()) > 0:
+		activeUser = request.cookies['user']
+		return '1'
+	else:
+		activeUser = ""
+		return '0'
+
+def getNewID():
+	return uuid.uuid4()
 
 if __name__ == '__main__':
 	app.run()
