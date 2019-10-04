@@ -6,6 +6,17 @@ import hashlib
 import uuid
 from datetime import datetime
 
+#commit = local
+#push = local code goes to Github
+
+##### MUST UPDATE BEFORE COMMIT/PUSH
+# 1. Commit
+# 2. Push
+
+
+# TODO Jeremy : home (ids must be same as Db : save Db SQL queries) : login (only front end) reg (only front end) : ticket (Only fonts front end, do not meddle with JavaScript)
+# TODO Sachin : confirm admin time
+
 app = Flask(__name__)
 app.config["DEBUG"] = True
 

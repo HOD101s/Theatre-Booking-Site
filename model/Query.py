@@ -13,8 +13,6 @@ allMovie = "SELECT * FROM `movie`;";
 
 
 '''
-Create Database `theatre`;
-
 CREATE TABLE `Client` (
   `uid` VARCHAR(20)PRIMARY KEY,
   `password` VARCHAR(20),
@@ -46,4 +44,18 @@ CREATE TABLE `Tickets` (
   FOREIGN KEY(`ShowID`) REFERENCES `Show` (`ShowID`),
   FOREIGN KEY(`uid`) REFERENCES `Client` (`uid`)
 );
+'''
+
+
+'''
+Jeremy Queries:
+
+
+Movie Queries
+INSERT INTO `movie`(`mid`, `Movie Name`) VALUES (2,'transporter');
+
+
+
+Show Queries
+
 '''
