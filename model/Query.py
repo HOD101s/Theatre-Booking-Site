@@ -11,6 +11,7 @@ allTicket = "SELECT * FROM `tickets`;";
 allClient = "SELECT * FROM `client`;";
 allMovie = "SELECT * FROM `movie`;";
 
+
 '''
 Create Database `theatre`;
 
