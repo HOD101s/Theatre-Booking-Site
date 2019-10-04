@@ -20,7 +20,7 @@
 <div class="content">
 	<h1>Movie Ticket Booking Page</h1>
 	<div class="main">
-		<h2>Multiplex Theatre Showing Screen 1</h2>
+		<h2>Multiplex Theatre Showing Screen {{screen}}</h2>
 		<div class="demo">
 			<div id="seat-map">
 				<div class="front">SCREEN</div>					
@@ -34,8 +34,8 @@
 					<li>Seats :</li>
 				</ul>
 				<ul class="book-right">
-					<li>: Gingerclown</li>
-					<li>: April 3, 21:00</li>
+					<li>: {{movie}}</li>
+					<li>: {{time}}</li>
 					<li>: <span id="counter">0</span></li>
 					<li>: <b><i>₹</i><span id="total">0</span></b></li>
 				</ul>
@@ -50,9 +50,15 @@
 	    </div>
 
 			<script type="text/javascript">
-				var price = 10; //price
+				var price = {{price}}; //price
 				var lis = [];
-				var booked = ["2_3", "2_4", "2_5", "2_6"];
+				var booked = "{{booked}}";
+				if(booked == ''){
+				    booked=[];
+                }else{
+				    booked = booked.split(' ');
+                }
+				console.log(booked);
 				$(document).ready(function() {
 					var $cart = $('#selected-seats'), //Sitting Area
 					$counter = $('#counter'), //Votes
@@ -127,14 +133,15 @@
 				$('button').bind('click', function() {
 					if(confirm("Are you sure you want to book these Tickets?")){
 						console.log(lis);
+						if(lis.length == 0){
+						    alert("No seats Chosen");
+                        }else{
+                            document.cookie = "seats = "+lis;
+                            window.location = "{{url_for('confirm')}}";
+                        }
 					}else{
 						return false;
 					}
-					// $.getJSON('/background_process_test',
-					// 	function(data) {
-					// //do nothing
-					// });
-					// return false;
 				});
 				});
 				

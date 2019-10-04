@@ -53,6 +53,7 @@
         while (index < val.length){
             tm = val[index];
             if(document.getElementById(tm).checked){
+                document.cookie = "timings = ;";
                 document.cookie = "timings = "+tm;
                 console.log(tm);
                 window.location = "{{url_for('ticket')}}";

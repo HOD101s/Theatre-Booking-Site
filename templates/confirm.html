@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="{{url_for('static',filename='js/qrcode.js')}}"></script>
+    <title>Confirm</title>
+</head>
+<body onload="genQR()">
+    <div id="qrcode"></div>
+    <h3>{{MOVIE}}</h3>
+    <p>Movie Time : {{TIME}}</p>
+    <p>ShowID : {{SHOWID}}</p>
+    <p>Ticket ID : {{TID}}</p>
+    <p>Seats : {{SEATS}}</p>
+    <p>Booked At {{TSTAMP}}</p>
+
+    <button onclick="goHome()">Go Back Home</button>
+
+    <script type="text/javascript">
+        function genQR() {
+            var qrcode = new QRCode(document.getElementById("qrcode"), {
+            text: "{{TID}}",
+            width: 128,
+            height: 128,
+            colorDark : "#000000",
+            colorLight : "#ffffff",
+            correctLevel : QRCode.CorrectLevel.H
+        });
+        }
+        function goHome(){
+            event.preventDefault();
+            document.cookie = "bookMovie=;";
+            document.cookie = "seats=;";
+            document.cookie = "timings=;";
+            window.location = "{{url_for('home')}}";
+        }
+    </script>
+</body>
+</html>
