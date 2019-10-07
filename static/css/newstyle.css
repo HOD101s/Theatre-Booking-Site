@@ -2,16 +2,17 @@ body{
 
 	margin: 0;
 	padding: 50%;
-	/* padding-top: 20rem; */
-	background: url("{{url_for('static',filename='images/back.jpg')}}");/*{{url_for('static',filename='images/back.jpg')}};*/
+	padding-top: 20rem;
+	background:url(../images/back.jpg) no-repeat center;
 	background-size: cover;
 	background-position: center;
 	font-family: sans-serif;
+
 }
 
 .loginbox{
 	width: 320px;
-	height: 420px;
+	height: 520px;
 	padding-top: 10%;
 	background: #000;
 	color: #fff;

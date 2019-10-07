@@ -9,7 +9,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 	<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-	<link href="{{url_for('static',filename='css/style.css')}}" rel="stylesheet">
+	<link href="{{url_for('static',filename='css/homestyle.css')}}" rel="stylesheet">
 
 	<!-- C:\Users\manas\Desktop\Practice\College\SEM 5\Project\WDL-DBMS-master\static\css -->
 	
@@ -17,9 +17,9 @@
 <body>
 
 <!-- Navigation -->
-<nav class="navbar navbar-expand-md navbar-light bg-loght sticky-top">
+<nav class="navbar navbar-expand-md navbar-light bg-dark sticky-top">
 	<div class="container-fluid">
-        <a class="navbar-brand" href="#"><img src="{{url_for('static',filename='images/logo.jpg')}}"></a>
+        <a class="navbar-brand" href="#"><img src="{{url_for('static',filename='images/logo.png')}}"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"> 
         	<span class="navbar-toggler-icon"></span>
 		</button>
@@ -47,31 +47,38 @@
 			<img src="{{url_for('static', filename='images/backgroundimg1.jpg')}}">
 			<div class="carousel-caption">
 				<h1 class="display-2">NEW RELEASE</h1>
-				<h3>Complete website layout</h3>
-				<button type="button" class="btn btn-outline-light btn-lg">View</button>
-				<button type="button" class="btn btn-primary btn-lg"> Start</button>
+				<h3>JOKER</h3>
+				<button type="button" class="btn btn-outline-light btn-lg">Book Tickets Now!</button>
 			</div>
 		</div>
 		<div class="carousel-item"> 
 			<img src="{{url_for('static',filename='images/backgroundimg2.jpg')}}">
+			<div class="carousel-caption">
+				<h1 class="display-2">NEW RELEASE</h1>
+				<h3>Panther</h3>
+				<button type="button" class="btn btn-outline-light btn-lg">Book Tickets Now!</button>
+			</div>
 		</div>
 		<div class="carousel-item"> 
 			<img src="{{url_for('static',filename='images/backgroundimg3.jpg')}}">
+			<div class="carousel-caption">
+				<h1 class="display-2">NEW RELEASE</h1>
+				<h3>The Wall</h3>
+				<button type="button" class="btn btn-outline-light btn-lg">Book Tickets Now!</button>
+			</div>
 		</div>
 	</div>	
 </div>
 
-<!--- Jumbotron -->
+<!--- Jumbotron
  <div class="container-fluid">
  	<div class="row Jumbotron">
- 		<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-10">
- 			<p class="lead">Enter text</p>
- 		</div>
  		<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-2">
  			<a href="#"><button type="button" class="btn btn-outline-secondary btn-lg"> CLick here</button></a>
  	    </div>
 	</div>
  </div>
+-->
 
 <!--- Welcome Section -->
 <div class="container-fluid padding">
@@ -94,16 +101,16 @@
 		<h3>Abominable</h3>
 	</div>
 	<div class="col-xs-12 col-sm-12 col-md-4">
-		<img id="Spider Man - Homecoming" class="movie_tile" src="{{url_for('static',filename='images/spider.jpg')}}">
-		<h3>Spider Man - Homecoming</h3>
+		<img id="Spider Man" class="movie_tile" src="{{url_for('static',filename='images/spider.jpg')}}">
+		<h3>Spider Man</h3>
 	</div>
 	<div class="col-xs-12 col-sm-12 col-md-4">
-		<img id="Deadpool 2" class="movie_tile" src="{{url_for('static',filename='images/deadpool.jpg')}}">
-		<h3>Deadpool 2</h3>
+		<img id="Deadpool" class="movie_tile" src="{{url_for('static',filename='images/deadpool.jpg')}}">
+		<h3>Deadpool</h3>
 	</div>
 	<div class="col-xs-12 col-sm-12 col-md-4">
-		<img id="Thor Ragnarok" class="movie_tile" src="{{url_for('static',filename='images/thor 2.jpg')}}">
-		<h3>Thor Ragnarok</h3>
+		<img id="Ragnarok" class="movie_tile" src="{{url_for('static',filename='images/thor.jpg')}}">
+		<h3>Ragnarok</h3>
 	</div>
 	<div class="col-xs-12 col-sm-12 col-md-4">
 		<img id="Justice league" class="movie_tile" src="{{url_for('static',filename='images/justice league.jpg')}}">
