@@ -6,17 +6,20 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link href="{{url_for('static',filename='css/radio.css')}}" rel="stylesheet">
     <title>Timings</title>
 </head>
 <body>
-
+<div class="box">
     <form id="myForm">
 
 
     </form>
 
-    <button class="button" onclick="formData()">Submit</button>
-
+    <button class="button" onclick="formData()">
+        <label>Submit</label>
+    </button>
+</div>
 
 <script type="text/javascript">
     //console.log(document.cookie);
@@ -40,7 +43,7 @@
         let inp="";
         while (index < val.length){
             tm = val[index];
-            inp = inp + `<div class="form-check form-check-inline"> <input class="form-check-input" type="radio" name="`+tm +`" id="`+tm+`" value="option1"> <label class="form-check-label" for="inlineRadio1">`+tm+`</label>\</div><br>`;
+            inp = inp + `<div class="form-check form-check-inline"> <input class="form-check-input" type="radio" name="`+tm +`" id="`+tm+`" value="option1"><span class="choice"> <label class="form-check-label" for="inlineRadio1">`+tm+`</label></span>\</div><br>`;
             index++;
         }
         inp = inp + "";

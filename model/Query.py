@@ -52,10 +52,35 @@ Jeremy Queries:
 
 
 Movie Queries
-INSERT INTO `movie`(`mid`, `Movie Name`) VALUES (2,'transporter');
+INSERT INTO `movie`(`mid`, `Movie Name`) VALUES (1,'Abominable')
+INSERT INTO `movie`(`mid`, `Movie Name`) VALUES (2,'Spider Man')
+INSERT INTO `movie`(`mid`, `Movie Name`) VALUES (3,'Deadpool')
+INSERT INTO `movie`(`mid`, `Movie Name`) VALUES (4,'Ragnarok')
+INSERT INTO `movie`(`mid`, `Movie Name`) VALUES (5,'Justice league')
+INSERT INTO `movie`(`mid`, `Movie Name`) VALUES (6,'Star Wars')
+
+
 
 
 
 Show Queries
+INSERT INTO `show`(`ShowID`, `Screen`, `tstamp`, `cost`, `mid`) VALUES (1, 1, '12:30', 100, 1)
+INSERT INTO `show`(`ShowID`, `Screen`, `tstamp`, `cost`, `mid`) VALUES (2, 2, '3:00', 100, 1)
+INSERT INTO `show`(`ShowID`, `Screen`, `tstamp`, `cost`, `mid`) VALUES (3, 1, '9:00', 120, 2 )
+INSERT INTO `show`(`ShowID`, `Screen`, `tstamp`, `cost`, `mid`) VALUES (4, 2, '6:00', 120, 2 )
+INSERT INTO `show`(`ShowID`, `Screen`, `tstamp`, `cost`, `mid`) VALUES (5, 1, '3:00', 90, 3 )
+INSERT INTO `show`(`ShowID`, `Screen`, `tstamp`, `cost`, `mid`) VALUES (6, 2, '3:00', 80, 4 )
+INSERT INTO `show`(`ShowID`, `Screen`, `tstamp`, `cost`, `mid`) VALUES (7, 1, '6:00', 80, 4 )
+INSERT INTO `show`(`ShowID`, `Screen`, `tstamp`, `cost`, `mid`) VALUES (8, 3, '9:00', 150, 5 )
+INSERT INTO `show`(`ShowID`, `Screen`, `tstamp`, `cost`, `mid`) VALUES (9, 1, '9:00', 150, 5 )
+INSERT INTO `show`(`ShowID`, `Screen`, `tstamp`, `cost`, `mid`) VALUES (10, 2, '7:00', 150, 5 )
+INSERT INTO `show`(`ShowID`, `Screen`, `tstamp`, `cost`, `mid`) VALUES (11, 1, '10:00', 150, 6 )
+INSERT INTO `show`(`ShowID`, `Screen`, `tstamp`, `cost`, `mid`) VALUES (12, 2, '11:00', 60, 6 )
+
+
+
+
+
+
 
 '''
