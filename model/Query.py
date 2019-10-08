@@ -58,24 +58,32 @@ INSERT INTO `movie`(`mid`, `Movie Name`) VALUES (3,'Deadpool')
 INSERT INTO `movie`(`mid`, `Movie Name`) VALUES (4,'Ragnarok')
 INSERT INTO `movie`(`mid`, `Movie Name`) VALUES (5,'Justice league')
 INSERT INTO `movie`(`mid`, `Movie Name`) VALUES (6,'Star Wars')
-
-
+INSERT INTO `movie`(`mid`, `Movie Name`) VALUES (7,'joker')
+INSERT INTO `movie`(`mid`, `Movie Name`) VALUES (8,'panther')
+INSERT INTO `movie`(`mid`, `Movie Name`) VALUES (9,'wall')
 
 
 
 Show Queries
 INSERT INTO `show`(`ShowID`, `Screen`, `tstamp`, `cost`, `mid`) VALUES (1, 1, '12:30', 100, 1)
-INSERT INTO `show`(`ShowID`, `Screen`, `tstamp`, `cost`, `mid`) VALUES (2, 2, '3:00', 100, 1)
-INSERT INTO `show`(`ShowID`, `Screen`, `tstamp`, `cost`, `mid`) VALUES (3, 1, '9:00', 120, 2 )
-INSERT INTO `show`(`ShowID`, `Screen`, `tstamp`, `cost`, `mid`) VALUES (4, 2, '6:00', 120, 2 )
-INSERT INTO `show`(`ShowID`, `Screen`, `tstamp`, `cost`, `mid`) VALUES (5, 1, '3:00', 90, 3 )
-INSERT INTO `show`(`ShowID`, `Screen`, `tstamp`, `cost`, `mid`) VALUES (6, 2, '3:00', 80, 4 )
-INSERT INTO `show`(`ShowID`, `Screen`, `tstamp`, `cost`, `mid`) VALUES (7, 1, '6:00', 80, 4 )
-INSERT INTO `show`(`ShowID`, `Screen`, `tstamp`, `cost`, `mid`) VALUES (8, 3, '9:00', 150, 5 )
-INSERT INTO `show`(`ShowID`, `Screen`, `tstamp`, `cost`, `mid`) VALUES (9, 1, '9:00', 150, 5 )
-INSERT INTO `show`(`ShowID`, `Screen`, `tstamp`, `cost`, `mid`) VALUES (10, 2, '7:00', 150, 5 )
+INSERT INTO `show`(`ShowID`, `Screen`, `tstamp`, `cost`, `mid`) VALUES (2, 2, '13:00', 100, 1)
+INSERT INTO `show`(`ShowID`, `Screen`, `tstamp`, `cost`, `mid`) VALUES (3, 1, '19:00', 120, 2 )
+INSERT INTO `show`(`ShowID`, `Screen`, `tstamp`, `cost`, `mid`) VALUES (4, 2, '16:00', 120, 2 )
+INSERT INTO `show`(`ShowID`, `Screen`, `tstamp`, `cost`, `mid`) VALUES (5, 1, '03:00', 90, 3 )
+INSERT INTO `show`(`ShowID`, `Screen`, `tstamp`, `cost`, `mid`) VALUES (6, 2, '13:00', 80, 4 )
+INSERT INTO `show`(`ShowID`, `Screen`, `tstamp`, `cost`, `mid`) VALUES (7, 1, '16:00', 80, 4 )
+INSERT INTO `show`(`ShowID`, `Screen`, `tstamp`, `cost`, `mid`) VALUES (8, 3, '09:00', 150, 5 )
+INSERT INTO `show`(`ShowID`, `Screen`, `tstamp`, `cost`, `mid`) VALUES (9, 1, '19:00', 150, 5 )
+INSERT INTO `show`(`ShowID`, `Screen`, `tstamp`, `cost`, `mid`) VALUES (10, 2, '07:00', 150, 5 )
 INSERT INTO `show`(`ShowID`, `Screen`, `tstamp`, `cost`, `mid`) VALUES (11, 1, '10:00', 150, 6 )
 INSERT INTO `show`(`ShowID`, `Screen`, `tstamp`, `cost`, `mid`) VALUES (12, 2, '11:00', 60, 6 )
+INSERT INTO `show`(`ShowID`, `Screen`, `tstamp`, `cost`, `mid`) VALUES (13, 2, '21:00', 160, 7 )
+INSERT INTO `show`(`ShowID`, `Screen`, `tstamp`, `cost`, `mid`) VALUES (14, 1, '21:00', 160, 7 )
+INSERT INTO `show`(`ShowID`, `Screen`, `tstamp`, `cost`, `mid`) VALUES (15, 1, '11:00', 160, 7 )
+INSERT INTO `show`(`ShowID`, `Screen`, `tstamp`, `cost`, `mid`) VALUES (16, 1, '01:00', 110, 8 )
+INSERT INTO `show`(`ShowID`, `Screen`, `tstamp`, `cost`, `mid`) VALUES (17, 2, '16:00', 110, 8 )
+INSERT INTO `show`(`ShowID`, `Screen`, `tstamp`, `cost`, `mid`) VALUES (18, 1, '16:00', 100, 9 )
+INSERT INTO `show`(`ShowID`, `Screen`, `tstamp`, `cost`, `mid`) VALUES (19, 2,'21:00', 100, 9 )
 
 
 
