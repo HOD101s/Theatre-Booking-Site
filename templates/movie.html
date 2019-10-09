@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<!--    <link href="{{url_for('static',filename='css/admin.css')}}"rel="stylesheet">-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Acme|Yeseva+One&display=swap" rel="stylesheet">
+	<title>All Movies</title>
+<style>
+    *{
+        padding: 0;
+        margin: auto 0;
+        box-sizing: border-box;
+        text-align: center;
+        font-family: 'Open Sans', sans-serif !important;
+    }
+    body{
+        background:url(../static/images/banner2.jpg) no-repeat center;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+
+    .movie_tile{
+        width: 50%;
+        align-self: center;
+        cursor: pointer;
+        margin: 0.2em;
+    }
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-md navbar-light bg-dark sticky-top">
+	<div class="container-fluid">
+        <a class="navbar-brand" onclick="loadHome()"><img id="myLogo" style="max-height:3em;" src="{{url_for('static',filename='images/logo.png')}}"></a>
+		<div class="collapse navbar-collapse" id="navbarResponsive">
+			<ul class="navbar-nav ml-auto">
+<!--				<li class="nav-item active">-->
+<!--					<a class="nav-link" style="color: #fff;" onclick="signOut()">Sign Out</a>-->
+<!--				</li>-->
+			</ul>
+		</div>
+    </div>
+</nav>
+
+<div class="container">
+    <input class="form-control" id="myInput" type="text" placeholder="Search..">
+    <br>
+    <ul class="list-group" id="myList">
+    {% for row in res %}
+    <a class="movie_tile list-group-item" id="{{row[1]}}">{{row[1]}}</a>
+    {% endfor %}
+    </ul>
+</div>
+
+<script>
+    $(document).ready(function(){
+      $("#myInput").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#myList li").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+
+    $(function(){
+		$('.movie_tile').bind('click',function () {
+			//console.log(this.id);
+			setCookie(this.id,'bookMovie');
+			window.location = "{{url_for('time')}}";
+		});
+	});
+
+	function setCookie(cook,name) {
+		document.cookie = name+" = "+cook;
+	}
+
+	function loadHome() {
+        window.location = "{{url_for('home')}}"
+    }
+</script>
+
+</body>
+</html>

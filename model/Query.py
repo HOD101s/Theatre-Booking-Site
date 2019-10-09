@@ -8,6 +8,14 @@ insertTicket = "INSERT INTO `tickets`(`tid`, `tstamp`, `seat_no`, `showid`, `uid
 insertShow = "INSERT INTO `show`(`ShowID`, `Screen`, `tstamp`, `cost`, `mid`,`tickets`) VALUES ('{}', '{}', '{}', '{}', '{}','""');"
 insertMovie = "INSERT INTO `movie`(`mid`, `Movie Name`) VALUES ('{}','{}');"
 
+'''
+"SELECT `tid`,`seat_no`,`showid`  FROM `tickets` WHERE `uid` = '{}';"
+"SELECT `Screen`,`tstamp`,`mid` FROM `show` WHERE `ShowID` = '{}';"
+"SELECT `Movie Name` FROM `movie` WHERE `mid` = '{}';"
+'''
+userTickets = "SELECT t.`tid`,t.`seat_no`,s.`Screen`,s.`tstamp`, m.`Movie Name`  FROM `tickets` t , `show` s , `movie` m WHERE t.`showid` = s.`showID` AND s.`mid` = m.`mid` AND t.`uid` = '{}';"
+
+
 allShow = "SELECT * FROM `show`;";
 allTicket = "SELECT * FROM `tickets`;";
 allClient = "SELECT * FROM `client`;";
@@ -19,6 +27,7 @@ DATABASE UPDATES
 
 ALTER TABLE `client` ADD `email` VARCHAR(100) NOT NULL AFTER `credential`;
 
+SELECT t.`tid`,t.`seat_no`,t.`showid`,s.`Screen`,s.`tstamp`,s.`mid`, m.`Movie Name`  FROM `tickets` t , `show` s , `movie` m WHERE t.`showid` = s.`showID` AND s.`mid` = m.`mid` AND t.`uid` = 'user';
 '''
 
 

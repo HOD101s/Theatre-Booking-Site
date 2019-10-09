@@ -13,7 +13,7 @@ from datetime import datetime
 # 2. Push
 
 # TODO Jeremy : home (ids must be same as Db : save Db SQL queries) : login (only front end) reg (only front end) : ticket (Only fonts front end, do not meddle with JavaScript)
-# TODO Sachin : confirm admin time
+# TODO Sachin :
 # TODO Manas : add all movies page, add mytickets to home
 
 app = Flask(__name__)
@@ -38,19 +38,23 @@ showID = ""
 activeUser = ""
 showTime = ""
 
+#Redirect Login
 @app.route('/')
 def begin():
 	return redirect(url_for('login'))
 
+#Render Home
 @app.route('/home')
 def home():
 	return render_template('home.html')
 
+#Render Time
 @app.route('/time')
 def time():
 	MOVIE = request.cookies['bookMovie']
 	return render_template('time.html',movie=MOVIE)
 
+#Return Show Timings
 @app.route('/get_time', methods=['POST'])
 def timing():
 	print(request.cookies['bookMovie'])
@@ -59,6 +63,7 @@ def timing():
 	print(t)
 	return jsonify(t)
 
+#Render Confirmed Tickets Page
 @app.route('/confirm')
 def confirm():
 	print(request.cookies['bookMovie'], request.cookies['timings'],request.cookies['seats'], sep='\n')
@@ -73,6 +78,7 @@ def confirm():
 	con.commit()
 	return render_template('confirm.html',TID = tid, TSTAMP = tstamp, SEATS = request.cookies['seats'],SHOWID = showID, MOVIE = request.cookies['bookMovie'], TIME = request.cookies['timings'])
 
+#Rednder Booking Page
 @app.route('/ticket')
 def ticket():
 	print(request.cookies['bookMovie'], request.cookies['timings'],sep='\n')
@@ -97,11 +103,12 @@ def ticket():
 	BOOKED = str(' '.join(BOOKED.split(',')))
 	return render_template('ticket.html',movie =request.cookies['bookMovie'], screen=SCREEN,time = TIME, price=PRICE,booked = BOOKED)
 
-
+#Render Register Page
 @app.route('/register')
 def register():
 	return render_template('register.html')
 
+#Registration Checking Entries
 @app.route('/check_register',methods=['POST'])
 def check_register():
 	email = str(request.get_data().decode('UTF-8'))
@@ -120,6 +127,7 @@ def check_register():
 		except:
 			return '2'
 
+#Render Admin Page
 @app.route('/admin')
 def admin():
 	cur.execute(Query.allShow)
@@ -132,10 +140,12 @@ def admin():
 	movieRes = cur.fetchall()
 	return render_template('admin.html',show = showRes, ticket = ticketsRes,clients = clientsRes, movies = movieRes)
 
+#Render Login
 @app.route('/login')
 def login():
 	return render_template('login.html')
 
+#Login Verification
 @app.route('/check_login',methods=['POST'])
 def check_login():
 	global activeUser
@@ -151,6 +161,7 @@ def check_login():
 		activeUser = ""
 		return '0'
 
+#Insert into Show
 @app.route('/insert_show',methods=['POST'])
 def insertShow():
 	val = str(request.get_data().decode('UTF-8')).split(' ')
@@ -164,6 +175,7 @@ def insertShow():
 	except:
 		return "2"
 
+#Insert into Movie
 @app.route('/insert_movie',methods=['POST'])
 def insertMovie():
 	val = str(request.get_data().decode('UTF-8')).split(' ')
@@ -173,6 +185,18 @@ def insertMovie():
 		return "1"
 	except:
 		return "2"
+
+#Render all Movies Page
+@app.route('/allMovie')
+def allMov():
+	cur.execute(Query.allMovie)
+	return render_template('movie.html',res = cur.fetchall())
+
+#Render MyTickets Page
+@app.route('/myTickets')
+def myTickets():
+	cur.execute(Query.userTickets.format(request.cookies['user']))
+	return render_template('myTickets.html',res=cur.fetchall())
 
 if __name__ == '__main__':
 	app.run()

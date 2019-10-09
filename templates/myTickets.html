@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<!--    <link href="{{url_for('static',filename='css/admin.css')}}"rel="stylesheet">-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Acme|Yeseva+One&display=swap" rel="stylesheet">
+	<title>My Tickets</title>
+<style>
+    *{
+            padding: 0;
+            margin: auto 0;
+            box-sizing: border-box;
+            text-align: center;
+            font-family: 'Open Sans', sans-serif !important;
+        }
+        body{
+            background:url(../static/images/banner2.jpg) no-repeat center;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        .movie_tile{
+            width: 50%;
+            align-self: center;
+            cursor: pointer;
+        }
+        /*table{
+            border-collapse: collapse;
+            border: 3px solid gray;
+            border-radius: 5px;
+        }
+        h1{
+            color:white;
+            font-family: 'Yeseva One', cursive;
+        }
+        th,tbody{
+            color:white;
+            font-family: 'Acme', sans-serif;
+        }*/
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-md navbar-light bg-dark sticky-top">
+	<div class="container-fluid">
+        <a class="navbar-brand" onclick="loadHome()"><img id="myLogo" style="max-height:3em;" src="{{url_for('static',filename='images/logo.png')}}"></a>
+		<div class="collapse navbar-collapse" id="navbarResponsive">
+			<ul class="navbar-nav ml-auto">
+<!--				<li class="nav-item active">-->
+<!--					<a class="nav-link" style="color: #fff;" onclick="signOut()">Sign Out</a>-->
+<!--				</li>-->
+			</ul>
+		</div>
+    </div>
+</nav>
+
+<div class="container">
+    <input class="form-control" id="myInput" type="text" placeholder="Search..">
+    <br>
+    <div class="list-group" id="myList">
+    {% for row in res %}
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{row[4]}}</h5>
+            <p class="card-text">Timings : {{row[3]}}</p>
+            <p class="card-text">Ticket ID : {{row[0]}}</p>
+            <p class="card-text">Seats : {{row[1]}}</p>
+        </div>
+    </div>
+    <br>
+    {% endfor %}
+    </div>
+</div>
+
+<script>
+    $(document).ready(function(){
+      $("#myInput").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#myList div").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+
+    $(function(){
+		$('.movie_tile').bind('click',function () {
+			//console.log(this.id);
+			setCookie(this.id,'bookMovie');
+			window.location = "{{url_for('time')}}";
+		});
+	});
+
+	function setCookie(cook,name) {
+		document.cookie = name+" = "+cook;
+	}
+
+	function loadHome() {
+        window.location = "{{url_for('home')}}"
+    }
+</script>
+
+</body>
+</html>
