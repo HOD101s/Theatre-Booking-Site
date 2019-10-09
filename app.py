@@ -40,6 +40,9 @@ showID = ""
 activeUser = ""
 showTime = ""
 
+@app.route('/')
+def begin():
+	return redirect(url_for('login'))
 
 
 @app.route('/home')
