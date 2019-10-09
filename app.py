@@ -16,7 +16,7 @@ from datetime import datetime
 
 # TODO Jeremy : home (ids must be same as Db : save Db SQL queries) : login (only front end) reg (only front end) : ticket (Only fonts front end, do not meddle with JavaScript)
 # TODO Sachin : confirm admin time
-# TODO Manas : add all movies page, add signout on admin, add insertions on admin, add mytcikets to home
+# TODO Manas : add all movies page, add signout on admin, add insertions on admin, add mytickets to home
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
