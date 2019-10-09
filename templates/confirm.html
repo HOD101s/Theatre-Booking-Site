@@ -3,13 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/confirm.css')}}">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="{{url_for('static',filename='js/qrcode.js')}}"></script>
+    <link href="https://fonts.googleapis.com/css?family=Acme|Yeseva+One&display=swap" rel="stylesheet">
     <title>Confirm</title>
+    <style>
+    *{
+            padding: 0;
+            margin: 20px auto 0;
+            box-sizing: border-box;
+            text-align: center;
+            font-family: 'Open Sans', sans-serif !important;
+        }
+        body{
+            background:url(../static/images/banner2.jpg) no-repeat center;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        .box{
+            width: 320px;
+            height: 520px;
+            color: rgba(0,0,0,0.5);
+            border: 2px solid black";
+        }
+
+        p{
+            color:white;
+            font-family: 'Acme', sans-serif;
+        }
+        button{
+            color:rgba(0,0,0,0.3);
+        }
+        button:hover{
+            transform: scale(1.1,1.1);
+        }
+
+</style>
 </head>
 <body onload="genQR()">
+    <div class="box">
     <div id="qrcode"></div>
     <h3>{{MOVIE}}</h3>
     <p>Movie Time : {{TIME}}</p>
@@ -19,7 +54,7 @@
     <p>Booked At {{TSTAMP}}</p>
 
     <button onclick="goHome()">Go Back Home</button>
-
+    </div>
     <script type="text/javascript">
         function genQR() {
             var qrcode = new QRCode(document.getElementById("qrcode"), {
