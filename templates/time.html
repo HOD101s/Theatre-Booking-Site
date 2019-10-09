@@ -11,6 +11,8 @@
 </head>
 <body>
 <div class="box">
+    <img src="{{url_for('static',filename='images/{{movie}}.jpg')}}">
+    <h1 class="center" id="movie_name">{{movie}}</h1>
     <form id="myForm">
 
 
@@ -43,7 +45,7 @@
         let inp="";
         while (index < val.length){
             tm = val[index];
-            inp = inp + `<div class="form-check form-check-inline"> <input class="form-check-input" type="radio" name="`+tm +`" id="`+tm+`" value="option1"><span class="choice"> <label class="form-check-label" for="inlineRadio1">`+tm+`</label></span>\</div><br>`;
+            inp = inp + `<input class="form-check-input" type="radio" name="time" id="`+tm+`" value="option1"><span class="choice"> <label class="form-check-label" for="inlineRadio1">`+tm+`</label></span>\</div><br>`;
             index++;
         }
         inp = inp + "";
@@ -65,6 +67,10 @@
             }
             index++;
         }
+    }
+
+    function mname(){
+        document.getElementByID("movie_name").innerHTML = document.cookie['bookMovie']
     }
 </script>
 </body>

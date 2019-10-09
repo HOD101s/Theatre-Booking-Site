@@ -41,13 +41,15 @@ activeUser = ""
 showTime = ""
 
 
+
 @app.route('/home')
 def home():
 	return render_template('home.html')
 
 @app.route('/time')
 def time():
-	return render_template('time.html')
+	MOVIE = request.cookies['bookMovie']
+	return render_template('time.html',movie=MOVIE)
 
 @app.route('/get_time', methods=['POST'])
 def timing():
@@ -111,23 +113,6 @@ def check_register():
 		con.commit()
 		return '1'
 
-@app.route('/login')
-def login():
-	return render_template('login.html')
-
-@app.route('/check_login',methods=['POST'])
-def check_login():
-	global activeUser
-	print(request.cookies['user'],request.cookies['pass'], sep='\n')
-	cur.execute(Query.check_login.format(request.cookies['user'],str(hashlib.md5(request.cookies['pass'].encode()).hexdigest())))
-	if len(cur.fetchall()) > 0:
-		activeUser = request.cookies['user']
-		if activeUser == 'admin':
-			return redirect({{url_for('admin')}})
-		return '1'
-	else:
-		activeUser = ""
-		return '0'
 
 @app.route('/admin')
 def admin():
@@ -140,6 +125,25 @@ def admin():
 	cur.execute(Query.allMovie)
 	movieRes = cur.fetchall()
 	return render_template('admin.html',show = showRes, ticket = ticketsRes,clients = clientsRes, movies = movieRes)
+
+
+@app.route('/login')
+def login():
+	return render_template('login.html')
+
+@app.route('/check_login',methods=['POST'])
+def check_login():
+	global activeUser
+	print(request.cookies['user'],request.cookies['pass'], sep='\n')
+	cur.execute(Query.check_login.format(request.cookies['user'],str(hashlib.md5(request.cookies['pass'].encode()).hexdigest())))
+	if len(cur.fetchall()) > 0:
+		activeUser = request.cookies['user']
+		if request.cookies['user'] == 'admin':
+			return '2'
+		return '1'
+	else:
+		activeUser = ""
+		return '0'
 
 def getNewID():
 	return uuid.uuid4()

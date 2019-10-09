@@ -16,7 +16,7 @@
 			<p>Username</p>
 			<input id="user" type="text" name="" placeholder="Enter Username">
 			<p>Password</p>
-			<input id="pass" type="text" name="" placeholder="Enter Password ">
+			<input id="pass" type="password" name="" placeholder="Enter Password ">
 			<input type="submit" value="Login" onclick="login()">
 			<input id="goToReg" type="submit" value="Sign Up" onclick="openReg()">
 			<p id="status"></p>
@@ -45,6 +45,8 @@
 			success: function (data) {
 				if(data == '1'){
 					window.location = "{{url_for('home')}}";
+				}else if(data == '2'){
+					window.location = "{{url_for('admin')}}";
 				}else{
 					document.getElementById("status").innerHTML = "Incorrect Credentials";
 				}

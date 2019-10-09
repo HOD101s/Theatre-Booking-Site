@@ -52,7 +52,7 @@ Jeremy Queries:
 
 
 Movie Queries
-INSERT INTO `movie`(`mid`, `Movie Name`) VALUES (1,'Abominable')
+INSERT INTO `movie`(`mid`, `Movie Name`) VALUES (1,'Endgame')
 INSERT INTO `movie`(`mid`, `Movie Name`) VALUES (2,'Spider Man')
 INSERT INTO `movie`(`mid`, `Movie Name`) VALUES (3,'Deadpool')
 INSERT INTO `movie`(`mid`, `Movie Name`) VALUES (4,'Ragnarok')
