@@ -17,6 +17,8 @@
 			<input id="user" type="text" name="" placeholder="Enter Username">
 			<p>Password</p>
 			<input id="pass" type="text" name="" placeholder="Enter Password ">
+			<p>Register</p>
+			<input id="email" type="text" name="" placeholder="Enter Email">
 			<input type="submit" value="Register" onclick="regUser()">
             <input id="goToLogin" type="submit" value="Go to Login" onclick="openLogin()">
             <p id="status"></p>
@@ -39,14 +41,16 @@
 			$.ajax({
 			type: "POST",
 			url: '/check_register',
-			// data: JSON.stringify(timings),
-			// contentType: "application/json; charset=utf-8",
-			// traditional: true,
-			success: function (data) {
-				if(data == '1'){
+			data: document.getElementById("email").value,
+			success: function (resp) {
+				if(resp == "1"){
 					document.getElementById("status").innerHTML = "Registered";
-				}else{
+				}else if(resp=="2"){
+					document.getElementById("status").innerHTML = "Error";
+				}else if(resp == "0"){
 					document.getElementById("status").innerHTML = "Username Unavailable";
+				}else if(resp == "3"){
+					document.getElementById("status").innerHTML = "Email Field Empty";
 				}
 			}
 			});

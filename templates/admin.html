@@ -2,7 +2,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link href="{{url_for('static',filename='css/admin.css')}}"rel="stylesheet">
+<!--    <link href="{{url_for('static',filename='css/admin.css')}}"rel="stylesheet">-->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -37,98 +37,233 @@
 </style>
 </head>
 <body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-md navbar-light bg-dark sticky-top">
+	<div class="container-fluid">
+        <a class="navbar-brand"><img id="myLogo" style="max-height:3em;" src="{{url_for('static',filename='images/logo.png')}}"></a>
+<!--        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">-->
+<!--        	<span class="navbar-toggler-icon"></span>-->
+<!--		</button>-->
+		<div class="collapse navbar-collapse" id="navbarResponsive">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item active">
+					<a class="nav-link" style="color: #fff;" onclick="signOut()">Sign Out</a>
+				</li>
+			</ul>
+		</div>
+    </div>
+</nav>
+
 <div>
 <!--  Show	-->
-	<h1>Shows Data</h1>
-	<table border="2">
-    <thead>
-    <tr>
-        <th>ShowID</th>
-        <th>Screen</th>
-        <th>TimeStamp</th>
-        <th>Cost</th>
-        <th>MovieID</th>
-        <th>Tickets</th>
-    </tr>
-    </thead>
-    <tbody>
-        {% for row in show %}
-            <tr>
-                <td>{{row[0]}}</td>
-                <td>{{row[1]}}</td>
-                <td>{{row[2]}}</td>
-                <td>{{row[3]}}</td>
-                <td>{{row[4]}}</td>
-                <td>{{row[5]}}</td>
-            </tr>
-        {% endfor %}
-    </tbody>
-	</table>
+    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#shows" style="width: 20%; font-size: 20px;">Shows</button>
+    <div id="shows" class="collapse">
+        <h1>Shows Data</h1>
+        <table border="2">
+        <thead>
+        <tr>
+            <th>ShowID</th>
+            <th>Screen</th>
+            <th>TimeStamp</th>
+            <th>Cost</th>
+            <th>MovieID</th>
+            <th>Tickets</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for row in show %}
+                <tr>
+                    <td>{{row[0]}}</td>
+                    <td>{{row[1]}}</td>
+                    <td>{{row[2]}}</td>
+                    <td>{{row[3]}}</td>
+                    <td>{{row[4]}}</td>
+                    <td>{{row[5]}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+
+        <form style="width: 30%;" method="POST" autocomplete="off">
+            <div class="input-group">
+            <input type="text" class="form-control" name="showid" id="showid" placeholder="Show ID">
+            </div>
+            <div class="input-group">
+            <input type="text" class="form-control" name="screen" id="screen" placeholder="Screen">
+            </div>
+            <div class="input-group">
+            <input type="number" class="form-control" name="cost" id="cost" placeholder="Cost">
+            </div>
+            <div class="input-group">
+            <input type="text" class="form-control" name="time" id="time" placeholder="Time">
+            </div>
+            <div class="input-group">
+            <input type="text" class="form-control" name="movieid" id="movieid" placeholder="Movie ID">
+            </div>
+            <br>
+            <button type="button" onclick="inShow()">Submit</button>
+            <br>
+            <p id="SHOWstatus" style="color: #fff"></p>
+        </form>
+    </div>
 	<br><br><br>
+
 <!--  Tickets	-->
-	<h1>Tickets Data</h1>
-	<table border="2">
-    <thead>
-    <tr>
-        <th>TicketID</th>
-        <th>TimeStamp</th>
-        <th>SeatNumber</th>
-        <th>ShowID</th>
-        <th>UserID</th>
-    </tr>
-    </thead>
-    <tbody>
-        {% for row in ticket %}
-            <tr>
-                <td>{{row[0]}}</td>
-                <td>{{row[1]}}</td>
-                <td>{{row[2]}}</td>
-                <td>{{row[3]}}</td>
-                <td>{{row[4]}}</td>
-            </tr>
-        {% endfor %}
-    </tbody>
-</table>
-<br><br><br>
+    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#tickets" style="width: 20%; font-size: 20px;">Tickets</button>
+    <div id="tickets" class="collapse">
+        <h1>Tickets Data</h1>
+        <table border="2">
+        <thead>
+        <tr>
+            <th>TicketID</th>
+            <th>TimeStamp</th>
+            <th>SeatNumber</th>
+            <th>ShowID</th>
+            <th>UserID</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for row in ticket %}
+                <tr>
+                    <td>{{row[0]}}</td>
+                    <td>{{row[1]}}</td>
+                    <td>{{row[2]}}</td>
+                    <td>{{row[3]}}</td>
+                    <td>{{row[4]}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+    </div>
+	<br><br><br>
 <!--  Clients	-->
-	<h1>Clients Data</h1>
-	<table border="2">
-    <thead>
-    <tr>
-        <th>UserID</th>
-        <th>Password</th>
-        <th>Credential</th>
-    </tr>
-    </thead>
-    <tbody>
-        {% for row in clients %}
-            <tr>
-                <td>{{row[0]}}</td>
-                <td>{{row[1]}}</td>
-                <td>{{row[2]}}</td>
-            </tr>
-        {% endfor %}
-    </tbody>
-</table>
+    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#clients" style="width: 20%; font-size: 20px;">Clients</button>
+    <div id="clients" class="collapse">
+        <h1>Clients Data</h1>
+        <table border="2">
+        <thead>
+        <tr>
+            <th>UserID</th>
+            <th>Password</th>
+            <th>Credential</th>
+            <th>Email</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for row in clients %}
+                <tr>
+                    <td>{{row[0]}}</td>
+                    <td>{{row[1]}}</td>
+                    <td>{{row[2]}}</td>
+                    <td>{{row[3]}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+    </div>
 <br><br><br>
 <!--  Movie	-->
-	<h1>Movies Data</h1>
-	<table border="2">
-    <thead>
-    <tr>
-        <th>MovieID</th>
-        <th>Movie</th>
-    </tr>
-    </thead>
-    <tbody>
-        {% for row in movies %}
-            <tr>
-                <td>{{row[0]}}</td>
-                <td>{{row[1]}}</td>
-            </tr>
-        {% endfor %}
-    </tbody>
-</table>
+    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#movie" style="width: 20%; font-size: 20px;">Movies</button>
+    <div id="movie" class="collapse">
+        <h1>Movies Data</h1>
+        <table border="2">
+        <thead>
+        <tr>
+            <th>MovieID</th>
+            <th>Movie</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for row in movies %}
+                <tr>
+                    <td>{{row[0]}}</td>
+                    <td>{{row[1]}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+        <form style="width: 30%;" method="POST" autocomplete="off">
+            <div class="input-group">
+            <input type="text" class="form-control" name="mid" id="mid" placeholder="Movie ID">
+            </div>
+            <div class="input-group">
+            <input type="text" class="form-control" name="movie_name" id="movie_name" placeholder="Movie">
+            </div>
+            <br>
+            <button type="button" onclick="inMov()">Submit</button>
+            <br>
+            <p id="MOVstatus" style="color: #fff"></p>
+        </form>
+
+    </div>
 </div>
+<script>
+    function check(itr){
+        var index = 0;
+        while (index < itr.length) {
+            console.log(itr[index]);
+            if(document.getElementById(itr[index]).value == "" || document.getElementById(itr[index]).value == null){
+                return false;
+            }
+            index++;
+        }
+        return true;
+    }
+
+    function inMov(){
+        var ids = ["mid","movie_name"];
+        if(!check(ids)){
+            document.getElementById("MOVstatus").innerHTML = "Please fill all values";
+        }else{
+            document.getElementById("MOVstatus").innerHTML = "Processing";
+            var DATA = document.getElementById("mid").value +' '+ document.getElementById("movie_name").value;
+            $.ajax({
+                url: '/insert_movie',
+                type: 'POST',
+                data: DATA,
+                success: function(response){
+                    console.log(response);
+                    if(response == "1"){
+                        document.getElementById("MOVstatus").innerHTML = "Refreshing";
+                        location.reload();
+                    }else if(response == "2"){
+                        document.getElementById("MOVstatus").innerHTML = "Error";
+                    }
+                }
+            })
+        }
+    }
+
+    function inShow(){
+        var ids = ["showid","screen","cost","time","movieid"];
+        if(!check(ids)){
+            document.getElementById("SHOWstatus").innerHTML = "Please fill all values";
+        }else{
+            document.getElementById("SHOWstatus").innerHTML = "Processing"
+            var DATA = document.getElementById("showid").value+' '+document.getElementById("screen").value+' '+document.getElementById("cost").value+' '+document.getElementById("time").value+' '+document.getElementById("movieid").value;
+            $.ajax({
+                url: '/insert_show',
+                type: 'POST',
+                data: DATA,
+                success: function(response){
+                    console.log(response);
+                    if(response == "1"){
+                        document.getElementById("SHOWstatus").innerHTML = "Refreshing";
+                        location.reload();
+                    }else if(response == "2"){
+                        document.getElementById("SHOWstatus").innerHTML = "Error";
+                    }
+                }
+            })
+        }
+    }
+
+    function signOut() {
+		document.cookie = "user =;";
+		document.cookie = "pass =;";
+		window.location = "{{url_for('login')}}";
+	}
+</script>
 </body>
 </html>

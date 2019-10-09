@@ -3,7 +3,6 @@ from model.dbconnect import dbconn
 from model import Query
 from flask import jsonify
 import hashlib
-import uuid
 from datetime import datetime
 
 #commit = local
@@ -13,10 +12,9 @@ from datetime import datetime
 # 1. Commit
 # 2. Push
 
-
 # TODO Jeremy : home (ids must be same as Db : save Db SQL queries) : login (only front end) reg (only front end) : ticket (Only fonts front end, do not meddle with JavaScript)
 # TODO Sachin : confirm admin time
-# TODO Manas : add all movies page, add signout on admin, add insertions on admin, add mytickets to home
+# TODO Manas : add all movies page, add mytickets to home
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
@@ -35,7 +33,6 @@ try:
 except:
 	print("Not Connected")
 
-
 # Session Variables
 showID = ""
 activeUser = ""
@@ -44,7 +41,6 @@ showTime = ""
 @app.route('/')
 def begin():
 	return redirect(url_for('login'))
-
 
 @app.route('/home')
 def home():
@@ -108,15 +104,21 @@ def register():
 
 @app.route('/check_register',methods=['POST'])
 def check_register():
+	email = str(request.get_data().decode('UTF-8'))
+	if email == "":
+		return '3'
+	print(email)
 	print(request.cookies['reguser'],request.cookies['regpass'], sep='\n')
 	cur.execute(Query.check_register.format(request.cookies['reguser']))
 	if len(cur.fetchall()) > 0:
 		return '0'
 	else:
-		cur.execute(Query.regUser.format(request.cookies['reguser'],str(hashlib.md5(request.cookies['regpass'].encode()).hexdigest())))
-		con.commit()
-		return '1'
-
+		try:
+			cur.execute(Query.regUser.format(request.cookies['reguser'],str(hashlib.md5(request.cookies['regpass'].encode()).hexdigest()),email))
+			con.commit()
+			return '1'
+		except:
+			return '2'
 
 @app.route('/admin')
 def admin():
@@ -130,7 +132,6 @@ def admin():
 	movieRes = cur.fetchall()
 	return render_template('admin.html',show = showRes, ticket = ticketsRes,clients = clientsRes, movies = movieRes)
 
-
 @app.route('/login')
 def login():
 	return render_template('login.html')
@@ -140,19 +141,38 @@ def check_login():
 	global activeUser
 	print(request.cookies['user'],request.cookies['pass'], sep='\n')
 	cur.execute(Query.check_login.format(request.cookies['user'],str(hashlib.md5(request.cookies['pass'].encode()).hexdigest())))
-	if len(cur.fetchall()) > 0:
+	x = cur.fetchall()
+	if len(x) > 0:
 		activeUser = request.cookies['user']
-		if request.cookies['user'] == 'admin':
+		if x[0][2] == '1':
 			return '2'
 		return '1'
 	else:
 		activeUser = ""
 		return '0'
 
-def getNewID():
-	return uuid.uuid4()
+@app.route('/insert_show',methods=['POST'])
+def insertShow():
+	val = str(request.get_data().decode('UTF-8')).split(' ')
+	if len(val[3]) == 4:
+		val[3] = '0'+val[3]
+		print(val[3])
+	try:
+		cur.execute(Query.insertShow.format(val[0],val[1],val[3],int(val[2]),val[4]))
+		con.commit()
+		return "1"
+	except:
+		return "2"
+
+@app.route('/insert_movie',methods=['POST'])
+def insertMovie():
+	val = str(request.get_data().decode('UTF-8')).split(' ')
+	try:
+		cur.execute(Query.insertMovie.format(val[0],val[1]))
+		con.commit()
+		return "1"
+	except:
+		return "2"
 
 if __name__ == '__main__':
 	app.run()
-
-#Flask Python framework
