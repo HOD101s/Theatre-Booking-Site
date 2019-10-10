@@ -7,44 +7,14 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Acme|Yeseva+One&display=swap" rel="stylesheet">
+    <script src="{{url_for('static',filename='js/qrcode.js')}}"></script>
 
 <!--	FONTS   -->
 	<link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
 	<link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Asap&display=swap" rel="stylesheet">
+    <!--Favicon-->
+	<link rel="shortcut icon" type="image/png" href="{{url_for('static',filename='images/favicon.png')}}"/>
 	<title>My Tickets</title>
-<style>
-    *{
-            padding: 0;
-            margin: auto 0;
-            box-sizing: border-box;
-            text-align: center;
-            font-family: 'Open Sans', sans-serif !important;
-        }
-        body{
-            background:url(../static/images/ticket.jpg) no-repeat center;
-            background-size: cover;
-            background-attachment: fixed;
-        }
-
-        .movie_tile{
-            width: 50%;
-            align-self: center;
-            cursor: pointer;
-        }
-        /*table{
-            border-collapse: collapse;
-            border: 3px solid gray;
-            border-radius: 5px;
-        }
-        h1{
-            color:white;
-            font-family: 'Yeseva One', cursive;
-        }
-        th,tbody{
-            color:white;
-            font-family: 'Acme', sans-serif;
-        }*/
-</style>
 </head>
 <body>
 
@@ -71,8 +41,51 @@
     </div>
 </nav>
 
-<style>
+<div class="container">
+    <div class="row content-center">
+        <input class="form-control" id="myInput" type="text" placeholder="Search.."></input>
 
+        <br><br>
+    <div class="list-group" id="myList">
+        <div class="row text-center" style="padding-left: 15%; ">
+    {% for row in res %}
+    <div class="col-md-4 col-sm-12" style="margin:3em;">
+    <div class="card border-success mb-15" style=" width: 20rem;">
+        <div class="card-header">Ticket Information</div>
+        <div class="card-body">
+            <br>
+            <div class="img-animation">
+                <img src="" alt class="card-img-top">
+                <div class="card-body border-dark">
+                    <h5 class="card-title border-dark mb-3">{{row[4]}}</h5>
+                    <p class="card-text-center border-dark mb-3">Timings : {{row[3]}}</p>
+                    <p class="card " style="padding:0;">Ticket ID : {{row[0]}}</p>
+                    <p class="card-text-center"><small class="text-muted">Seats : {{row[1]}}</small></p>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer"></div>
+    </div>
+    </div>
+    {% endfor %}
+             </div>
+    </div>
+    </div>
+</div>
+
+<style>
+    *{
+        padding: 0;
+        margin: auto 0;
+        box-sizing: border-box;
+        text-align: center;
+        font-family: 'Open Sans', sans-serif !important;
+    }
+    body{
+        background:url(../static/images/ticket.jpg) no-repeat center;
+        background-size: cover;
+        background-attachment: fixed;
+    }
 	#brand.navbar-brand {
 		color:#fed136 ;
 		font-family: 'Kaushan Script','Helvetica Neue',Helvetica,Arial,cursive;
@@ -94,38 +107,6 @@
 	  max-width: 100vw;
 	}
 </style>
-
-<div class="container" >
-    <div class="row content-center">
-        <input class="form-control" id="myInput" type="text" placeholder="Search.."></input>
-
-        <br><br>
-    <div class="list-group" id="myList">
-        <div class="row text-center" style="padding-left: 15%; ">
-    {% for row in res %}
-    <div class="col-md-4 col-sm-12" style="margin:3em;">
-
-    <div class="card border-success mb-15" style=" width: 20rem;">
-        <div class="card-header">Ticket Information</div>
-        <div class="card-body">
-            <div class="img-animation">
-                <img src="" alt class="card-img-top">
-                <div class="card-body border-dark">
-                    <h5 class="card-title border-dark mb-3">{{row[4]}}</h5>
-                    <p class="card-text-center border-dark mb-3">Timings : {{row[3]}}</p>
-                    <p class="card " style="padding:0;">Ticket ID : {{row[0]}}</p>
-                    <p class="card-text-center"><small class="text-muted">Seats : {{row[1]}}</small></p>
-                </div>
-            </div>
-        </div>
-        <div class="card-footer"></div>
-    </div>
-    </div>
-    {% endfor %}
-             </div>
-    </div>
-    </div>
-</div>
 
 <script>
     $(document).ready(function(){

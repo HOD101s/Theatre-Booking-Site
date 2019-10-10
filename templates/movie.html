@@ -9,30 +9,11 @@
     <link href="https://fonts.googleapis.com/css?family=Acme|Yeseva+One&display=swap" rel="stylesheet">
 
 <!--	FONTS   -->
-	<link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet'>
 	<link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Asap&display=swap" rel="stylesheet">
+	<!--Favicon-->
+	<link rel="shortcut icon" type="image/png" href="{{url_for('static',filename='images/favicon.png')}}"/>
 	<title>All Movies</title>
-<style>
-    *{
-        padding: 0;
-        margin: auto 0;
-        box-sizing: border-box;
-        text-align: center;
-        font-family: 'Open Sans', sans-serif !important;
-    }
-    body{
-        background:url(../static/images/banner2.jpg) no-repeat center;
-        background-size: cover;
-        background-attachment: fixed;
-    }
-
-    .movie_tile{
-        width: 50%;
-        align-self: center;
-        cursor: pointer;
-        margin: 0.2em;
-    }
-</style>
 </head>
 <body>
 
@@ -60,6 +41,16 @@
     </div>
 </nav>
 
+<div class="container">
+    <input class="form-control" id="myInput" type="text" placeholder="Search..">
+    <br>
+    <ul class="list-group" id="myList">
+    {% for row in res %}
+    <a class="movie_tile list-group-item" id="{{row[1]}}">{{row[1]}}</a>
+    {% endfor %}
+    </ul>
+</div>
+
 <style>
 	.navbar {
 		padding-top: 1.6em;
@@ -84,17 +75,26 @@
 	a.nav-link  {
     	color: #fed136;
 	}
-</style>
+	*{
+        padding: 0;
+        margin: auto 0;
+        box-sizing: border-box;
+        text-align: center;
+        font-family: 'Open Sans', sans-serif !important;
+    }
+    body{
+        background:url(../static/images/banner2.jpg) no-repeat center;
+        background-size: cover;
+        background-attachment: fixed;
+    }
 
-<div class="container">
-    <input class="form-control" id="myInput" type="text" placeholder="Search..">
-    <br>
-    <ul class="list-group" id="myList">
-    {% for row in res %}
-    <a class="movie_tile list-group-item" id="{{row[1]}}">{{row[1]}}</a>
-    {% endfor %}
-    </ul>
-</div>
+    .movie_tile{
+        width: 50%;
+        align-self: center;
+        cursor: pointer;
+        margin: 0.2em;
+    }
+</style>
 
 <script>
     $(document).ready(function(){

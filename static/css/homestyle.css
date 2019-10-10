@@ -8,6 +8,17 @@ html, body{
 
 }
 
+/*HOD CSS*/
+.nav-link{
+			cursor: pointer;
+}
+.movie_tile{
+    cursor: pointer;
+}
+
+
+
+
 #myLogo{
     max-height:4em;
 }
