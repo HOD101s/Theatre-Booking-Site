@@ -7,6 +7,10 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Acme|Yeseva+One&display=swap" rel="stylesheet">
+
+<!--	FONTS   -->
+	<link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+	<link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Asap&display=swap" rel="stylesheet">
 	<title>My Tickets</title>
 <style>
     *{
@@ -45,18 +49,51 @@
 <body>
 
 <!-- Navigation -->
-<nav class="navbar navbar-expand-md navbar-light bg-dark sticky-top">
-	<div class="container-fluid">
-        <a class="navbar-brand" onclick="loadHome()"><img id="myLogo" style="max-height:3em;" src="{{url_for('static',filename='images/logo.png')}}"></a>
-		<div class="collapse navbar-collapse" id="navbarResponsive">
-			<ul class="navbar-nav ml-auto">
-<!--				<li class="nav-item active">-->
+<nav class="navbar navbar-expand-md sticky-top">
+	<div class="container">
+        <a class="navbar-brand" id="brand"><img id="myLogo" onclick="loadHome()" style="max-height:2em;" src="{{url_for('static',filename='images/logo.png')}}">   MovieTime</a>
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu
+			<i class="fa fa-bars"></i>
+        </button>
+		<div class="collapse navbar-collapse text-center" id="navbarResponsive">
+			<ul class="navbar-nav ml-auto text-uppercase">
+<!--				<li class="nav-item">-->
+<!--					<a class="nav-link" style="color: #fff;" onclick="allMov()">All Movies</a>-->
+<!--				</li>-->
+<!--				<li class="nav-item">-->
+<!--					<a class="nav-link" style="color: #fff;" onclick="myTic()">My Tickets</a>-->
+<!--				</li>-->
+<!--				<li class="nav-item">-->
 <!--					<a class="nav-link" style="color: #fff;" onclick="signOut()">Sign Out</a>-->
 <!--				</li>-->
 			</ul>
 		</div>
     </div>
 </nav>
+
+<style>
+
+	#brand.navbar-brand {
+		color:#fed136 ;
+		font-family: 'Kaushan Script','Helvetica Neue',Helvetica,Arial,cursive;
+		font-size: 1.75em;
+	}
+	.navbar {
+		padding-top: 1.6em;
+		padding-bottom: 1.6em;
+		-webkit-transition: padding-top .3s,padding-bottom .3s;
+		-moz-transition: padding-top .3s,padding-bottom .3s;
+		transition: padding-top .3s,padding-bottom .3s;
+		border: none;
+		max-width: 100vw;
+		transition: background-color 1s ease 0s;
+
+	  background-color: black;
+	  transition: background-color 1s ease 0s;
+	  box-shadow: 0 0 4px grey;
+	  max-width: 100vw;
+	}
+</style>
 
 <div class="container" >
     <div class="row content-center">
