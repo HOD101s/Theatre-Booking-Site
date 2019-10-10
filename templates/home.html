@@ -10,6 +10,7 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 	<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 	<link href="{{url_for('static',filename='css/homestyle.css')}}" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 
 	<!-- C:\Users\manas\Desktop\Practice\College\SEM 5\Project\WDL-DBMS-master\static\css -->
 	<style>
@@ -33,13 +34,13 @@
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item active">
-					<a class="nav-link" style="color: #fff;" onclick="allMov()">All Movies</a>
+					<a class="nav-link" style="color: #fff;" data-target="#navbarResponsive" onclick="allMov()">All Movies</a>
 				</li>
 				<li class="nav-item active">
-					<a class="nav-link" style="color: #fff;" onclick="myTic()">My Tickets</a>
+					<a class="nav-link" style="color: #fff;" data-target="#navbarResponsive" onclick="myTic()">My Tickets</a>
 				</li>
 				<li class="nav-item active">
-					<a class="nav-link" style="color: #fff;" onclick="signOut()">Sign Out</a>
+					<a class="nav-link" style="color: #fff;" data-target="#navbarResponsive" onclick="signOut()">Sign Out</a>
 				</li>
 			</ul>
 		</div>
@@ -95,6 +96,11 @@
 
 <br>
 <!--- Welcome Section -->
+
+<!--- Three Column Section -->
+<div class="container-fluid padding">
+<div class="row text-center padding">
+
 <div class="container-fluid padding">
 	<div class="row Welcome text-center">
 		<div class="col-12">
@@ -102,43 +108,42 @@
 		</div>
 		<hr>
 		<div class="col-12">
-			<p class="lead">Zone for the cinephiles</p>
+			<p class="lead">Zone for the Cinephiles</p>
 		</div>
 	</div>
 </div>
 
-<!--- Three Column Section -->
-<div class="container-fluid padding">
-<div class="row text-center padding">
 	<div class="col-xs-12 col-sm-12 col-md-4">
-		<img id="Endgame" class="movie_tile" src="{{url_for('static',filename='images/endgame.jpg')}}">
+		<img id="Endgame" class="movie_tile animated pulse " src="{{url_for('static',filename='images/endgame.jpg')}}">
 		<h3>Endgame</h3>
 	</div>
 	<div class="col-xs-12 col-sm-12 col-md-4">
-		<img id="Spider Man" class="movie_tile" src="{{url_for('static',filename='images/spider.jpg')}}">
+		<img id="Spider Man" class="movie_tile animated pulse " src="{{url_for('static',filename='images/spider.jpg')}}">
 		<h3>Spider Man</h3>
 	</div>
 	<div class="col-xs-12 col-sm-12 col-md-4">
-		<img id="Deadpool" class="movie_tile" src="{{url_for('static',filename='images/deadpool.jpg')}}">
+		<img id="Deadpool" class="movie_tile animated pulse " src="{{url_for('static',filename='images/deadpool.jpg')}}">
 		<h3>Deadpool</h3>
 	</div>
 	<div class="col-xs-12 col-sm-12 col-md-4">
-		<img id="Ragnarok" class="movie_tile" src="{{url_for('static',filename='images/thor.jpg')}}">
+		<img id="Ragnarok" class="movie_tile animated pulse " src="{{url_for('static',filename='images/thor.jpg')}}">
 		<h3>Ragnarok</h3>
 	</div>
 	<div class="col-xs-12 col-sm-12 col-md-4">
-		<img id="Justice league" class="movie_tile" src="{{url_for('static',filename='images/justice league.jpg')}}">
+		<img id="Justice league" class="movie_tile animated pulse" src="{{url_for('static',filename='images/justice league.jpg')}}">
 		<h3>Justice league</h3>
 	</div>
 	<div class="col-xs-12 col-sm-12 col-md-4">
-		<img id="Star Wars" class="movie_tile" src="{{url_for('static',filename='images/star wars.jpg')}}">
+		<img id="Star Wars" class="movie_tile animated pulse " src="{{url_for('static',filename='images/star wars.jpg')}}">
 		<h3>Star Wars</h3>
 	</div>
+</div>
 </div>
 <!--<hr class="my-4">-->
 <!--</div>  -->
 
 <!--<hr class="my-4">-->
+<!--<figure>-->
 <!--<figure>-->
 <!--	<div class="fixed-warp">-->
 <!--		<div id="Fixed">-->
@@ -148,20 +153,17 @@
 <!--</figure>-->
 
 
-<!--- Connect -->
+<!--- Connect
 <div class="container-fluid padding">
 <div class="row text-center padding">
 	<div class="col-12">
 		<h2>Connect</h2>
 	</div>
-	<div class="col-12 social padding">
-		<a href="https://www.facebook.com/BookMyShowIN" ><i class="fab fa-facebook"></i></a>
-		<a href="https://www.instagram.com/bookmyshowin" ><i class="fab fa-instagram"></i></a>
-		<a href="https://twitter.com/bookmyshow" ><i class="fab fa-twitter"></i></a>
-	</div>
-</div>
-</div>
 
+</div>
+</div>
+ -->
+<br><hr><br>
 <footer>
 <div class="container-fluid padding">
 <div class="row text-center">
@@ -179,6 +181,16 @@
 		<p>Weekdays: 11am-10pm</p>
 		<p>Weekends: 9am-12am</p>
 		<p>Thursdays closed</p>
+	</div>
+	<div class="col-md-4">
+		<hr class="light">
+		<h5>Connect</h5>
+		<hr class="light">
+		<div class="col-12 social padding">
+		<a href="https://www.facebook.com/BookMyShowIN" ><i class="fab fa-facebook"></i></a>
+		<a href="https://www.instagram.com/bookmyshowin" ><i class="fab fa-instagram"></i></a>
+		<a href="https://twitter.com/bookmyshow" ><i class="fab fa-twitter"></i></a>
+		</div>
 	</div>
 	<div class="col-12">
 		<hr class="light-100">

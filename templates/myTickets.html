@@ -17,7 +17,7 @@
             font-family: 'Open Sans', sans-serif !important;
         }
         body{
-            background:url(../static/images/banner2.jpg) no-repeat center;
+            background:url(../static/images/ticket.jpg) no-repeat center;
             background-size: cover;
             background-attachment: fixed;
         }
@@ -58,20 +58,35 @@
     </div>
 </nav>
 
-<div class="container">
-    <input class="form-control" id="myInput" type="text" placeholder="Search..">
-    <br>
+<div class="container" >
+    <div class="row content-center">
+        <input class="form-control" id="myInput" type="text" placeholder="Search.."></input>
+
+        <br><br>
     <div class="list-group" id="myList">
+        <div class="row text-center" style="padding-left: 15%; ">
     {% for row in res %}
-    <div class="card" style="margin-bottom: 0.8em;">
+    <div class="col-md-4 col-sm-12" style="margin:3em;">
+
+    <div class="card border-success mb-15" style=" width: 20rem;">
+        <div class="card-header">Ticket Information</div>
         <div class="card-body">
-            <h5 class="card-title">{{row[4]}}</h5>
-            <p class="card-text">Timings : {{row[3]}}</p>
-            <p class="card-text">Ticket ID : {{row[0]}}</p>
-            <p class="card-text">Seats : {{row[1]}}</p>
+            <div class="img-animation">
+                <img src="" alt class="card-img-top">
+                <div class="card-body border-dark">
+                    <h5 class="card-title border-dark mb-3">{{row[4]}}</h5>
+                    <p class="card-text-center border-dark mb-3">Timings : {{row[3]}}</p>
+                    <p class="card " style="padding:0;">Ticket ID : {{row[0]}}</p>
+                    <p class="card-text-center"><small class="text-muted">Seats : {{row[1]}}</small></p>
+                </div>
+            </div>
         </div>
+        <div class="card-footer"></div>
+    </div>
     </div>
     {% endfor %}
+             </div>
+    </div>
     </div>
 </div>
 

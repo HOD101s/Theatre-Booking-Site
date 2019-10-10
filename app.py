@@ -15,6 +15,7 @@ from datetime import datetime
 # TODO Jeremy : home (ids must be same as Db : save Db SQL queries) : login (only front end) reg (only front end) : ticket (Only fonts front end, do not meddle with JavaScript)
 # TODO Sachin :
 # TODO Manas : add all movies page, add mytickets to home
+# TODO change navbar color, pulse, animtation, confirm page,
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
