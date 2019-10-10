@@ -12,11 +12,9 @@ from datetime import datetime
 # 1. Commit
 # 2. Push
 
-# TODO Jeremy : home (ids must be same as Db : save Db SQL queries) : login (only front end) reg (only front end) : ticket (Only fonts front end, do not meddle with JavaScript)
+# TODO Jeremy : allMovies beautify
 # TODO Sachin :
-# TODO Manas : home.html front end
-# TODO Manas : add all movies page, add mytickets to home
-# TODO change navbar color, pulse, animtation, confirm page,
+# TODO Manas :
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
