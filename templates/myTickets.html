@@ -63,7 +63,7 @@
     <br>
     <div class="list-group" id="myList">
     {% for row in res %}
-    <div class="card">
+    <div class="card" style="margin-bottom: 0.8em;">
         <div class="card-body">
             <h5 class="card-title">{{row[4]}}</h5>
             <p class="card-text">Timings : {{row[3]}}</p>
@@ -71,7 +71,6 @@
             <p class="card-text">Seats : {{row[1]}}</p>
         </div>
     </div>
-    <br>
     {% endfor %}
     </div>
 </div>
