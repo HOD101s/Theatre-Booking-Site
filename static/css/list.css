@@ -1,0 +1,22 @@
+body
+{
+    margin: 0;
+	padding: 0;
+    background: #262626;
+    font-family: sans-serif;
+}
+
+ul
+{
+    position: center;
+    width: 450px;
+    margin: 100px auto;
+    box-sizing: border-box;
+}
+ul a{
+    display: flex;
+    background: rgba(255,255,255,.1);
+    padding: 10px 20px;
+    color: #fff;
+    transition: 0.5s;
+}
